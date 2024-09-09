@@ -40,16 +40,6 @@ export class Model {
     this.render({isPreview: true, now: false});
   }
 
-  set logsVisible(value: boolean) {
-    if (value) {
-      if (this.state.view.layout.mode === 'single') {
-        this.changeSingleVisibility('editor');
-      } else {
-        this.changeMultiVisibility('editor', true);  
-      }
-    }
-    this.mutate(s => s.view.logs = value);
-  }
 
   isComponentFullyVisible(id: SingleLayoutComponentId) {
     if (this.state.view.layout.mode === 'multi') {
@@ -65,11 +55,10 @@ export class Model {
       s.view.layout = s.view.layout.mode === 'multi'
         ? {
           mode: 'single',
-          focus: s.view.layout.editor ? 'editor' : s.view.layout.viewer ? 'viewer' : 'customizer'
+          focus: s.view.layout.viewer ? 'viewer' : 'customizer'
         }
         : {
           mode: 'multi',
-          editor: s.view.layout.focus === 'editor',
           viewer: s.view.layout.focus === 'viewer',
           customizer: s.view.layout.focus === 'customizer',
         }
@@ -79,9 +68,6 @@ export class Model {
     this.mutate(s => {
       if (s.view.layout.mode !== 'single') throw new Error('Wrong mode');
       s.view.layout.focus = focus;
-      if (focus !== 'editor') {
-        s.view.logs = false;
-      }
     });
   }
 
@@ -89,13 +75,10 @@ export class Model {
     this.mutate(s => {
       if (s.view.layout.mode !== 'multi') throw new Error('Wrong mode');
       s.view.layout[target] = visible
-      if ((s.view.layout.customizer ? 1 : 0) + (s.view.layout.editor ? 1 : 0) + (s.view.layout.viewer ? 1 : 0) == 0) {
+      if ((s.view.layout.customizer ? 1 : 0) + (s.view.layout.viewer ? 1 : 0) == 0) {
         // Select at least one panel
         // s.view.layout.editor = true;
         s.view.layout[target] = !visible;
-        if (target === 'editor' && !visible) {
-          s.view.logs = false;
-        }
       }
     })
   }

@@ -4,7 +4,7 @@ import defaultScad from './default-scad';
 import { State } from './app-state';
 
 export const defaultSourcePath = '/playground.scad';
-export const defaultModelColor = '#f9d72c';
+export const defaultModelColor = '#ffffff';
   
 export const blankProjectState: State = {
   params: {
@@ -16,7 +16,7 @@ export const blankProjectState: State = {
     color: defaultModelColor,
     layout: {
       mode: 'single',
-      focus: 'editor'
+      focus: 'viewer'
     }
   }
 };
@@ -36,7 +36,6 @@ export function createInitialState(fs: any, state: State | null) {
     view: {
       layout: {
         mode: 'multi',
-        editor: true,
         viewer: true,
         customizer: false,
       } as any,
@@ -50,7 +49,6 @@ export function createInitialState(fs: any, state: State | null) {
     if (mode === 'multi' && initialState.view.layout.mode === 'single') {
       initialState.view.layout = {
         mode,
-        editor: true,
         viewer: true,
         customizer: initialState.view.layout.focus == 'customizer'
       }
@@ -58,8 +56,7 @@ export function createInitialState(fs: any, state: State | null) {
       initialState.view.layout = {
         mode,
         focus: initialState.view.layout.viewer ? 'viewer'
-          : initialState.view.layout.customizer ? 'customizer'
-          : 'editor'
+          : 'customizer'
       }
     }
   }

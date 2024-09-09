@@ -94,23 +94,6 @@ export default function Footer({style}: {style?: CSSProperties}) {
         icon="pi pi-refresh"
         title="Render the model (F6 / Ctrl+Enter). Models can test $preview to enable more detail in renders only."
         label="Render" />
-      
-      {(state.lastCheckerRun || state.output) &&
-        <Button type="button"
-            // label={state.view.logs ? "Hide logs" : "Show logs"}
-            label="Logs"
-            icon="pi pi-align-left"
-            text={!state.view.logs}
-            onClick={() => model.logsVisible = !state.view.logs}
-            // onLabel="Logs" offLabel="Logs" 
-            // onIcon="pi pi-align-left"
-            // offIcon="pi pi-align-left"
-            className={maxMarkerSeverity && `p-button-${severityByMarkerSeverity.get(maxMarkerSeverity) ?? 'success'}`}
-            >
-          {getBadge(monaco.MarkerSeverity.Error)}
-          {getBadge(monaco.MarkerSeverity.Warning)}
-          {getBadge(monaco.MarkerSeverity.Info)}
-        </Button>}
 
       {state.output && (
         <Button icon='pi pi-download'

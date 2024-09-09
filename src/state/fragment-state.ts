@@ -68,8 +68,7 @@ export async function readStateFromFragment(): Promise<State | null> {
         view: {
           layout: {
             mode: validateStringEnum(view?.layout?.mode, ['multi', 'single']),
-            focus: validateStringEnum(view?.layout?.focus, ['editor', 'viewer', 'customizer'], s => false),
-            editor: validateBoolean(view?.layout['editor']),
+            focus: validateStringEnum(view?.layout?.focus, ['viewer', 'customizer'], s => false),
             viewer: validateBoolean(view?.layout['viewer']),
             customizer: validateBoolean(view?.layout['customizer']),
           },

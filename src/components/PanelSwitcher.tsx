@@ -14,7 +14,6 @@ export default function PanelSwitcher() {
   const state = model.state;
 
   const singleTargets: {id: SingleLayoutComponentId, icon: string, label: string}[] = [
-    { id: 'editor', icon: 'pi pi-pencil', label: 'Edit' },
     { id: 'viewer', icon: 'pi pi-box', label: 'View' },
   ];
   if ((state.parameterSet?.parameters?.length ?? 0) > 0) {

@@ -3,7 +3,7 @@
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 import { ParameterSet } from './customizer-types';
 
-export type MultiLayoutComponentId = 'editor' | 'viewer' | 'customizer';
+export type MultiLayoutComponentId = 'viewer' | 'customizer';
 export type SingleLayoutComponentId = MultiLayoutComponentId;
 
 export interface State {

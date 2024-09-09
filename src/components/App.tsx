@@ -3,7 +3,6 @@
 import React, { CSSProperties, useEffect, useState } from 'react';
 import {MultiLayoutComponentId, State, StatePersister} from '../state/app-state'
 import { Model } from '../state/model';
-import EditorPanel from './EditorPanel';
 import ViewerPanel from './ViewerPanel';
 import Footer from './Footer';
 import { ModelContext, FSContext } from './contexts';
@@ -39,20 +38,13 @@ export function App({initialState, statePersister, fs}: {initialState: State, st
   }, []);
 
   const zIndexOfPanelsDependingOnFocus = {
-    editor: {
-      editor: 3,
-      viewer: 1,
-      customizer: 0,
-    },
     viewer: {
-      editor: 2,
-      viewer: 3,
+      viewer: 2,
       customizer: 1,
     },
     customizer: {
-      editor: 0,
       viewer: 1,
-      customizer: 3,
+      customizer: 2,
     }
   }
 
@@ -60,7 +52,7 @@ export function App({initialState, statePersister, fs}: {initialState: State, st
   const mode = state.view.layout.mode;
   function getPanelStyle(id: MultiLayoutComponentId): CSSProperties {
     if (layout.mode === 'multi') {
-      const itemCount = (layout.editor ? 1 : 0) + (layout.viewer ? 1 : 0) + (layout.customizer ? 1 : 0)
+      const itemCount = (layout.viewer ? 1 : 0) + (layout.customizer ? 1 : 0)
       return {
         flex: 1,
         maxWidth: Math.floor(100/itemCount) + '%',
@@ -89,11 +81,6 @@ export function App({initialState, statePersister, fs}: {initialState: State, st
                 position: 'relative'
               }}>
 
-            <EditorPanel className={`
-              opacity-animated
-              ${layout.mode === 'single' && layout.focus !== 'editor' ? 'opacity-0' : ''}
-              ${layout.mode === 'single' ? 'absolute-fill' : ''}
-            `} style={getPanelStyle('editor')} />
             <ViewerPanel className={layout.mode === 'single' ? `absolute-fill` : ''} style={getPanelStyle('viewer')} />
             <CustomizerPanel className={`
               opacity-animated
