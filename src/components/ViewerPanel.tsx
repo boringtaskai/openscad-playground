@@ -30,13 +30,20 @@ export default function ViewerPanel({className, style}: {className?: string, sty
               // width: '100%'
             }}
             // ref={stlModelRef}
-            showAxes={state.view.showAxes}
+            // floorProps={
+            //   {
+            //     gridLength: 320,
+            //     gridWidth: 320
+            //   }
+            // }
+            showAxes={false}
             orbitControls
             shadows={state.view.showShadows}
             modelProps={{
               color: model.state.view.color,
             }}
             url={state.output?.stlFileURL ?? ''}
+            onFinishLoading={(ev) => {console.log(ev)}}
             />}
 
     </div>

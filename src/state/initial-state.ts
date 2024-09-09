@@ -61,8 +61,8 @@ export function createInitialState(fs: any, state: State | null) {
     }
   }
 
-  initialState.view.showAxes ??= true
-  initialState.view.showShadows ??= true
+  initialState.view.showAxes ??= false
+  initialState.view.showShadows ??= false
 
   fs.writeFile(initialState.params.sourcePath, initialState.params.source);
   if (initialState.params.sourcePath !== defaultSourcePath) {
