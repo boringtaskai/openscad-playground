@@ -238,19 +238,4 @@ module __shape(
         translate ([length-radius, radius, 0]) cylinder (h = height, r=radius);
     }
 }
-
-__grid(size=320, step=10);
-
-module __grid(size, step) {
-    for (i = [-size/2 : step : size/2]) {
-        // Vertical lines
-        translate([i, -size/2, 0]) {
-            cube([0.1, size, 0.1]); // Line thickness 0.1mm
-        }
-        // Horizontal lines
-        translate([-size/2, i, 0]) {
-            cube([size, 0.1, 0.1]); // Line thickness 0.1mm
-        }
-    }
-}
 `

@@ -30,13 +30,13 @@ export default function ViewerPanel({className, style}: {className?: string, sty
               // width: '100%'
             }}
             // ref={stlModelRef}
-            // floorProps={
-            //   {
-            //     gridLength: 320,
-            //     gridWidth: 320
-            //   }
-            // }
-            showAxes={false}
+            floorProps={
+              {
+                gridLength: 320,
+                gridWidth: 320
+              }
+            }
+            showAxes={state.view.showAxes}
             orbitControls
             shadows={state.view.showShadows}
             modelProps={{
