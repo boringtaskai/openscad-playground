@@ -5,6 +5,7 @@ import { MultiLayoutComponentId, SingleLayoutComponentId, State, StatePersister 
 import { bubbleUpDeepMutations } from "./deep-mutate";
 import { formatBytes, formatMillis } from '../utils'
 
+
 export class Model {
   constructor(private fs: FS, public state: State, private setStateCallback?: (state: State) => void, 
     private statePersister?: StatePersister) {
@@ -138,6 +139,9 @@ export class Model {
     const {source, sourcePath, vars, features} = this.state.params;
     
     render({source, sourcePath, vars, features, extraArgs: [], isPreview})({now, callback: (output, err) => {
+      console.log('output');
+      console.log(output);
+      
       this.mutate(s => {
         setRendering(s, false);
         if (err != null) {
@@ -152,6 +156,8 @@ export class Model {
           if (s.output?.stlFileURL) {
             URL.revokeObjectURL(s.output.stlFileURL);
           }
+          
+          console.log(output.totalPrice);
 
           s.output = {
             isPreview: isPreview,
@@ -160,6 +166,8 @@ export class Model {
             elapsedMillis: output.elapsedMillis,
             formattedElapsedMillis: formatMillis(output.elapsedMillis),
             formattedStlFileSize: formatBytes(output.stlFile.size),
+            totalPrice: output.totalPrice,
+            currency: output.currency,
           };
 
           if (!isPreview) {

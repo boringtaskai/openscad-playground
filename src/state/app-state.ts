@@ -48,6 +48,8 @@ export interface State {
     elapsedMillis: number,
     formattedElapsedMillis: string,
     formattedStlFileSize: string,
+    totalPrice: number,
+    currency: string,
     // path: string,
     // timestamp: number,
     // sizeBytes: number,

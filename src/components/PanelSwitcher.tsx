@@ -62,11 +62,6 @@ export default function PanelSwitcher() {
                   ({icon, label/*, disabled: id === 'customizer' && state?.parameterSet == null*/, command: () => model.changeSingleVisibility(id)}))} />
               </>
         }
-        <SettingsMenu style={{
-          position: 'absolute',
-          right: 0,
-          top: '4px',
-        }} />
       </div>
     </div>
   );

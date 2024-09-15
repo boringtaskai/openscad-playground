@@ -43,7 +43,7 @@ export default function ViewerPanel({className, style}: {className?: string, sty
               color: model.state.view.color,
             }}
             url={state.output?.stlFileURL ?? ''}
-            onFinishLoading={(ev) => {console.log(ev)}}
+            onFinishLoading={(ev) => { /*console.log(ev)*/ }}
             />}
 
     </div>

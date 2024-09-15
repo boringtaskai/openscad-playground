@@ -12,6 +12,7 @@ import { Toast } from 'primereact/toast';
 import SettingsMenu from './SettingsMenu';
 import HelpMenu from './HelpMenu';
 import { confirmDialog } from 'primereact/confirmdialog';
+import { Message } from 'primereact/message';
 
 function downloadOutput(state: State) {
   if (!state.output) return;
@@ -58,6 +59,7 @@ export default function Footer({style}: {style?: CSSProperties}) {
     [monaco.MarkerSeverity.Warning, 'warning'],
     [monaco.MarkerSeverity.Info, 'info'],
   ]);
+  
   const markers = state.lastCheckerRun?.markers ?? [];
   const getBadge = (s: monaco.MarkerSeverity) => {
     const count = markers.filter(m => m.severity == s).length;
@@ -116,6 +118,9 @@ export default function Footer({style}: {style?: CSSProperties}) {
       {state.checkingSyntax && 'checking syntax... '} */}
 
       {/* <span style={{flex: 1}}></span> */}
+
+      {state.output &&
+        <Message severity='success' text={`Price: Rp. ${state.output.totalPrice}`} />}
       
       <span style={{flex: 1}}></span>
 
